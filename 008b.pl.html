@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Slide 8</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "008.pl" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "008c.pl" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>                                    Debugger
+
+    perl -d t/test_fred.t
+
+     Loading DB routines from perl5db.pl version 1.44
+    Editor support available.
+
+    Enter h or 'h h' for help, or 'man perldebug' for more help.
+
+    ok 1 - use t::lib::Fred;
+    main::(t/test_fred.t:7):	cmp_ok($t::lib::Fred::VERSION, '==', 0.101, 'found Freds version');
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Slide 5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "004.sh" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "005b.sh" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+                                      %INC
+
+     _  _____ _   _  ____
+    (_)/ /_ _| \ | |/ ___|
+      / / | ||  \| | |
+     / /_ | || |\  | |___
+    /_/(_)___|_| \_|\____|
+
+
+    The %INC Hash is another special Perl variable that is used to cache
+    the names of the files and the modules that were successfully loaded
+    and compiled by use(), require() or do() statements.
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>http://www.perl.com/pub/2002/05/14/mod_perl.html</p><p></p>
+</div>
+</body>
+</html>
