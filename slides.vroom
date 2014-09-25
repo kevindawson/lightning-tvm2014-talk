@@ -1,0 +1,207 @@
+# This is a sample Vroom input file. It should help you get started.
+#
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: The Musings of a Dyslexic Technologist
+indent: 4
+auto_size: 0
+height: 24
+width: 80
+# vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- shell,i12
+== Title Slide
+
+ _ 
+| |_ _ _ 
+| __(_|_)
+| |_ _ _ 
+ \__(_|_)
+
+plus a hint of grep.cpan.me
+
+by bowtie
+
+TVPM-Marlow Sep 2014
+
+http://kevindawson.github.io/lightning-tvm2014-talk/
+
+====
+figlet
+---- shell,i18
+== Package Separator
+
+ _ _ 
+(_|_)
+ _ _ 
+(_|_)
+     
+
+aka: Double-colon
+---- text
+== Test Tree
+
+
+
+t
+├── lib
+│   └── Fred.pm
+└── test_fred.t
+
+====
+tree
+---- shell
+== @INC
+
+   ____  ___ _   _  ____ 
+  / __ \|_ _| \ | |/ ___|
+ / / _` || ||  \| | |    
+| | (_| || || |\  | |___ 
+ \ \__,_|___|_| \_|\____|
+  \____/                 
+
+@INC is a special Perl variable that is the equivalent to the shell's
+PATH variable. Whereas PATH contains a list of directories to search
+for executables, @INC contains a list of directories from which Perl
+modules and libraries can be loaded.
+====
+
+http://www.perl.com/pub/2002/05/14/mod_perl.html
+---- shell
+== %INC
+
+ _  _____ _   _  ____ 
+(_)/ /_ _| \ | |/ ___|
+  / / | ||  \| | |    
+ / /_ | || |\  | |___ 
+/_/(_)___|_| \_|\____|
+                      
+
+The %INC Hash is another special Perl variable that is used to cache
+the names of the files and the modules that were successfully loaded
+and compiled by use(), require() or do() statements.
+
++Before attempting to load a file or a module with use() or require(), 
+Perl checks whether it's already in the %INC hash. If it's there,
+then the loading and therefore the compilation are not performed at all.
+
++Otherwise, the file is loaded into memory and an attempt is made to
+compile it. do() does unconditional loading -- no lookup in the %INC
+hash is made.
+====
+http://www.perl.com/pub/2002/05/14/mod_perl.html
+---- perl
+== Fred.pm
+
+package t::lib::Fred;
+
+our $VERSION = '0.101';
+
+1;
+
+---- perl
+== test_fred.t
+
+use Test::More;
+
+BEGIN {
+	use_ok('t::lib::Fred');
+}
+
+cmp_ok($t::lib::Fred::VERSION, '==', 0.101, 'found Freds version');
+
+done_testing();
+
+---- perl
+== Debugger
+
+perl -d t/test_fred.t
+
++ Loading DB routines from perl5db.pl version 1.44
+Editor support available.
+
+Enter h or 'h h' for help, or 'man perldebug' for more help.
+
+ok 1 - use t::lib::Fred;
+main::(t/test_fred.t:7):	cmp_ok($t::lib::Fred::VERSION, '==', 0.101, 'found Freds version');
++  DB<1> l
+7==>	cmp_ok($t::lib::Fred::VERSION, '==', 0.101, 'found Freds version');
+8 	
+9:	done_testing();
+10 	
++  DB<1> print map {"$_ => $INC{$_}\n" if $_ =~ /^t/} keys %INC
+t/lib/Fred.pm => t/lib/Fred.pm
+
++  DB<2> c
+ok 2 - found Freds version
+1..2
+Debugged program terminated.  Use q to quit or R to restart,
+use o inhibit_exit to avoid stopping after program termination,
+h q, h R or h o to get additional info.
+  DB<2> q
+kevin@billy:~/scratch/Sandbox$
+
+----
+== grep.cpan.me
+
+file:.t package t::
+
+---- shell
+== cpangrep
+
+$ cpangrep 'package t::' | sort |grep '/t/lib' | nl
++     1	ADAMK/FBP-Perl-0.78/t/lib/MyClass.pm
+     2	ADAMK/Perl-Dist-1.16/t/lib/Test.pm
+     3	ALTREUS/Outline-Lua-0.11/t/lib/t/Outline/Lua/error.pm
+     4	CELOGEEK/Jedi-1.004/t/lib/advanced.pm
+     5	CELOGEEK/Jedi-Plugin-Session-0.05/t/lib/role.pm
+     6	CELOGEEK/MooX-Options-4.010/t/lib/MooXCmdTest.pm
+     7	CELOGEEK/MooX-ProtectedAttributes-0.03/t/lib/moo/myTestClass.pm
+     8	DAGOLDEN/Test-API-0.005/t/lib/Child.pm
+     9	DOLMEN/POE-Component-Logger-1.10/t/lib/Log/Dispatch/Config/Test.pm
+    10	FGLOCK/Pugs-Compiler-Rule-0.37/t/lib/AST.pm
+    11	FLORA/Class-C3-XS-0.13/t/lib/A.pm
+    12	HAARG/Class-C3-0.27/t/lib/A.pm
+    13	SEWI/YAWF-Object-MongoDB-0.03/t/lib/Car.pm
+    14	TBONE/XML-Writer-Compiler-1.112060/t/lib/InvoiceAdd.pm
+    15	TEMOON/Crane-1.03.0011/t/lib/Crane.pm
+
+
+---- shell,i8
+== Questions
+
+  ___                  _   _                 
+ / _ \ _   _  ___  ___| |_(_) ___  _ __  ___ 
+| | | | | | |/ _ \/ __| __| |/ _ \| '_ \/ __|
+| |_| | |_| |  __/\__ \ |_| | (_) | | | \__ \
+ \__\_\\__,_|\___||___/\__|_|\___/|_| |_|___/
+
+====
+* http://ingydotnet.github.com/vroom-pm/
+* http://www.figlet.org/
+
+---- shell,i18
+== The End
+
+ _____ _            _____           _ 
+|_   _| |__   ___  | ____|_ __   __| |
+  | | | '_ \ / _ \ |  _| | '_ \ / _` |
+  | | | | | |  __/ | |___| | | | (_| |
+  |_| |_| |_|\___| |_____|_| |_|\__,_|
+
+
